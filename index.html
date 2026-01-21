@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rutina Casera 2026</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; -webkit-tap-highlight-color: transparent; }
+        .day-btn.active { @apply bg-orange-500 text-white border-orange-500 shadow-lg scale-105; }
+        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); }
+        /* Mejora de la visibilidad del scroll horizontal */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-zinc-950 text-zinc-100 min-h-screen pb-10">
+
+    <!-- Header -->
+    <header class="p-6 border-b border-zinc-800 sticky top-0 bg-zinc-950/80 backdrop-blur-md z-40">
+        <h1 class="text-2xl font-bold text-orange-500 flex items-center gap-2">
+            <i data-lucide="dumbbell"></i> FitHome 2026
+        </h1>
+        <p class="text-zinc-400 text-sm mt-1">Protocolo Integral de Hipertrofia</p>
+    </header>
+
+    <main class="max-w-md mx-auto px-4 mt-6">
+        
+        <!-- Selector de Días Optimizado (Asegurando visibilidad de todos los días) -->
+        <div class="relative">
+            <div class="flex overflow-x-auto gap-2 py-4 mb-6 no-scrollbar items-center snap-x whitespace-nowrap">
+                <button onclick="selectDay(1)" id="btn-1" class="day-btn shrink-0 px-4 py-2 rounded-full border border-zinc-700 text-xs font-semibold transition-all snap-start">Lun</button>
+                <button onclick="selectDay(2)" id="btn-2" class="day-btn shrink-0 px-4 py-2 rounded-full border border-zinc-700 text-xs font-semibold transition-all snap-start">Mar</button>
+                <button onclick="selectDay(3)" id="btn-3" class="day-btn shrink-0 px-4 py-2 rounded-full border border-zinc-700 text-xs font-semibold transition-all snap-start">Mié</button>
+                <button onclick="selectDay(4)" id="btn-4" class="day-btn shrink-0 px-4 py-2 rounded-full border border-zinc-700 text-xs font-semibold transition-all snap-start">Jue</button>
+                <button onclick="selectDay(5)" id="btn-5" class="day-btn shrink-0 px-4 py-2 rounded-full border border-zinc-700 text-xs font-semibold transition-all snap-start">Vie</button>
+                <button onclick="selectDay(6)" id="btn-6" class="day-btn shrink-0 px-4 py-2 rounded-full border border-zinc-700 text-xs font-semibold transition-all snap-start">Sáb</button>
+                <button onclick="selectDay(0)" id="btn-0" class="day-btn shrink-0 px-4 py-2 rounded-full border border-zinc-700 text-xs font-semibold transition-all snap-start">Dom</button>
+            </div>
+            <!-- Indicador visual de que hay más días a la derecha -->
+            <div class="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-zinc-950 to-transparent pointer-events-none md:hidden"></div>
+        </div>
+
+        <!-- Contenedor de Rutina -->
+        <div id="routine-container" class="space-y-6">
+            <!-- Cargando... -->
+        </div>
+
+    </main>
+
+    <!-- Modal de "Cómo se hace" -->
+    <div id="modal" class="fixed inset-0 bg-black/95 z-50 hidden flex items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-zinc-900 w-full max-w-sm rounded-2xl p-6 border border-zinc-800 shadow-2xl my-auto">
+            <div class="flex justify-between items-start mb-4">
+                <h3 id="modal-title" class="text-xl font-bold text-orange-400 leading-tight">Título</h3>
+                <button onclick="closeModal()" class="p-2 hover:bg-zinc-800 rounded-full text-zinc-400">
+                    <i data-lucide="x"></i>
+                </button>
+            </div>
+            <div id="modal-content" class="text-zinc-300 text-sm leading-relaxed space-y-4 max-h-[60vh] overflow-y-auto pr-2">
+                <!-- Contenido dinámico -->
+            </div>
+            <button onclick="closeModal()" class="w-full mt-6 py-4 bg-orange-600 text-white rounded-xl font-bold active:scale-95 transition-transform">
+                Entendido
+            </button>
+        </div>
+    </div>
+
+    <script>
+        const routines = {
+            1: {
+                title: "Sesión A: Torso (Mecánico)",
+                subtitle: "Enfoque en volumen y control de palancas",
+                exercises: [
+                    { name: "Press de Piso DB", sets: "4", reps: "15-20", detail: "<b>Técnica:</b> Codos a 45°. Baja en 3 segundos controlados hasta que el tríceps toque suavemente el suelo. <br><br><b>Pro tips:</b> Intenta 'juntar los bíceps' al subir para máxima contracción pectoral. Usa repeticiones 1 y 1/4 para aumentar intensidad." },
+                    { name: "Remo Unilateral 'Gorila'", sets: "4", reps: "15-25", detail: "<b>Técnica:</b> Espalda completamente plana. Tira del codo hacia la cadera (como al bolsillo), no hacia el hombro.<br><br><b>El Secreto:</b> Sostén 2 segundos completos arriba para compensar la falta de peso con tensión isométrica." },
+                    { name: "Elevaciones Laterales", sets: "3", reps: "15-20", detail: "<b>Técnica:</b> Mancuernas de 5kg. Brazos ligeramente hacia adelante (plano escapular, 30°).<br><br><b>Focus:</b> Los codos lideran el movimiento. Baja resistiendo la gravedad (3s de bajada)." },
+                    { name: "Flexiones de Brazos", sets: "3", reps: "Fallo", detail: "<b>Técnica:</b> Manos sobre mancuernas para mayor rango. Cuerpo en línea recta.<br><br><b>Progresión:</b> Si logras >20, eleva los pies sobre la bolsa de boxeo para enfocar el pectoral superior." },
+                    { name: "Super-serie Brazos", sets: "3", reps: "12-15", detail: "<b>Combinación:</b> Curl de Bíceps (7kg) + Extensiones de Tríceps en suelo.<br><br>Realiza ambos seguidos sin descanso para maximizar el estrés metabólico." }
+                ]
+            },
+            2: {
+                title: "Sesión B: Pierna (Unilateral)",
+                subtitle: "Enfoque en carga anterior y equilibrio",
+                exercises: [
+                    { name: "Sentadilla Abrazo de Oso", sets: "4", reps: "10-15", detail: "<b>Equipo:</b> Bolsa de Boxeo.<br><br><b>Biomecánica:</b> Al sostener la carga delante, el centro de gravedad te obliga a una postura erguida que enfatiza cuádriceps y erectores espinales.<br><br><b>Técnica:</b> Agarre Gable (entrelazando manos). Aprieta la bolsa contra el pecho como si quisieras explotarla. Inspira profundo antes de bajar para proteger la columna." },
+                    { name: "Sentadilla Búlgara (1.5)", sets: "3", reps: "8-10 p/l", detail: "<b>Técnica 1.5:</b> Baja fondo -> Sube a la mitad -> Baja fondo -> Sube completo. Esto hace que 14kg se sientan como 40kg.<br><br><b>Focus:</b> Torso inclinado ligeramente adelante para mayor énfasis en glúteo." },
+                    { name: "Peso Muerto Rumano Unilateral", sets: "3", reps: "10-12 p/l", detail: "<b>Técnica:</b> Rodilla de apoyo micro-flexionada. Imagina que tu cuerpo es un balancín. Espalda recta como una tabla.<br><br><b>Sentido:</b> Debes sentir un estiramiento intenso en la parte posterior del muslo." },
+                    { name: "Puente de Glúteo Unilateral", sets: "3", reps: "15-20", detail: "<b>Técnica:</b> Empuja con el talón. Si sientes el isquio, acerca el talón al glúteo. Concéntrate en 'meter la cola' (retroversión) antes de subir para proteger la lumbar." }
+                ]
+            },
+            3: {
+                title: "Descanso Activo / Movilidad",
+                subtitle: "Preparación de tejidos y recuperación",
+                exercises: [
+                    { name: "Movilidad Escapular (Palo)", sets: "2", reps: "12", detail: "Dislocaciones de hombro con agarre amplio. Codos bloqueados. Si se doblan, ensancha el agarre. El objetivo es el 'flossing' articular." },
+                    { name: "Estiramiento Dorsal", sets: "3", reps: "30 seg", detail: "Palo vertical, camina hacia atrás con espalda recta y empuja el pecho hacia el suelo. Sentirás estiramiento en axilas e isquios." },
+                    { name: "Dead Bug con Presión", sets: "3", reps: "10", detail: "Acuéstate boca arriba. Presiona el palo contra tus muslos con las manos. Esta lucha genera contracción masiva en el abdomen." }
+                ]
+            },
+            4: {
+                title: "Sesión C: Torso (Metabólico)",
+                subtitle: "Enfoque en aislamiento y agotamiento",
+                exercises: [
+                    { name: "Press de Piso (Pausas)", sets: "4", reps: "15-20", detail: "Realiza una pausa de 2 segundos cuando el tríceps toque el suelo para eliminar la inercia y aumentar la tensión neta." },
+                    { name: "Remo Inclinado Bolsa", sets: "4", reps: "20+", detail: "Usa la bolsa para carga bruta. Inclinación del torso casi paralela al suelo. Tira hacia el abdomen usando la espalda, no los bíceps." },
+                    { name: "Laterales (Bombeo)", sets: "4", reps: "20-30", detail: "Busca la 'quemazón'. El objetivo es la acumulación de metabolitos (lactato) para activar señales anabólicas." },
+                    { name: "Push-ups Declinadas", sets: "3", reps: "Fallo", detail: "Pies elevados sobre silla o bolsa. Codos a 45 grados para proteger el hombro." }
+                ]
+            },
+            5: {
+                title: "Sesión D: Pierna (Posterior)",
+                subtitle: "Cadena posterior y glúteo mayor",
+                exercises: [
+                    { name: "Sentadilla Abrazo Oso", sets: "4", reps: "12-15", detail: "Control de calidad: Pies al ancho de hombros, puntas ligeramente hacia afuera. Empuja el suelo con toda la planta." },
+                    { name: "Peso Muerto Unilateral", sets: "4", reps: "12 p/l", detail: "Mantén el peso cerca de la pierna de apoyo. La pierna trasera sube en línea recta con el torso." },
+                    { name: "Zancadas Caminando", sets: "3", reps: "20", detail: "Usa las mancuernas de 7kg. Pasos largos para enfatizar el glúteo." },
+                    { name: "Puente Glúteo (Carga)", sets: "3", reps: "20", detail: "Coloca una mancuerna de 7kg sobre la cadera para añadir carga externa." }
+                ]
+            },
+            6: {
+                title: "Sesión E: Cardio & Core",
+                subtitle: "Acondicionamiento Metabólico (HIIT)",
+                exercises: [
+                    { name: "Combo 1-2 (Boxeo)", sets: "5", reps: "60 seg", detail: "Jab-Directo continuos. No golpees solo con brazos; gira el pie y la cadera. Exhala con cada golpe." },
+                    { name: "Burpees con Salto", sets: "5", reps: "30 seg", detail: "Intensidad máxima. Pecho al suelo y salto explosivo vertical." },
+                    { name: "Pallof Press (Palo)", sets: "5", reps: "45s p/l", detail: "<b>Sustituye los giros:</b> Resiste la rotación. Empuja el palo contra una pared y mantén el torso perfectamente cuadrado." },
+                    { name: "Descanso Activo", sets: "5", reps: "60 seg", detail: "Caminar y soltar brazos para recuperar el aliento antes del siguiente round." }
+                ]
+            },
+            0: {
+                title: "Descanso Total",
+                subtitle: "Recuperación y Crecimiento",
+                exercises: [
+                    { name: "Nutrición (Proteína)", sets: "-", reps: "-", detail: "Consume 20-30g de proteína cada 3-4 horas para maximizar la síntesis proteica." },
+                    { name: "Hidratación", sets: "-", reps: "-", detail: "Repón los electrolitos perdidos durante el entrenamiento con la bolsa." },
+                    { name: "Reposo", sets: "-", reps: "-", detail: "El crecimiento ocurre durante el sueño. Intenta alcanzar las 8 horas de calidad." }
+                ]
+            }
+        };
+
+        let currentDay = 0;
+
+        function selectDay(dayIndex) {
+            currentDay = dayIndex;
+            // UI Update
+            document.querySelectorAll('.day-btn').forEach(btn => btn.classList.remove('active'));
+            const btn = document.getElementById(`btn-${dayIndex}`);
+            if (btn) {
+                btn.classList.add('active');
+                // Scroll automático para asegurar que el botón seleccionado sea visible
+                btn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+            }
+
+            const routine = routines[dayIndex];
+            const container = document.getElementById('routine-container');
+
+            let html = `
+                <div class="glass p-6 rounded-3xl border border-zinc-800 shadow-xl border-l-4 border-l-orange-500">
+                    <h2 class="text-xl font-bold text-white">${routine.title}</h2>
+                    <p class="text-orange-500 text-xs font-bold uppercase tracking-widest mt-1">${routine.subtitle}</p>
+                </div>
+                <div class="overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900/40 backdrop-blur-sm">
+                    <table class="w-full text-left text-sm">
+                        <thead class="bg-zinc-800/50 text-zinc-500 uppercase text-[10px] font-bold">
+                            <tr>
+                                <th class="px-4 py-3">Ejercicio</th>
+                                <th class="px-2 py-3 text-center">S/R</th>
+                                <th class="px-4 py-3 text-right">Guía</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-zinc-800/50">
+            `;
+
+            routine.exercises.forEach((ex, idx) => {
+                html += `
+                    <tr class="hover:bg-zinc-800/20 transition-colors">
+                        <td class="px-4 py-4 font-semibold text-zinc-100">${ex.name}</td>
+                        <td class="px-2 py-4 text-center text-zinc-400 font-mono text-xs">${ex.sets}x${ex.reps}</td>
+                        <td class="px-4 py-4 text-right">
+                            <button onclick="showInfo(${idx})" class="p-2.5 bg-zinc-800 active:bg-orange-600 rounded-xl text-orange-400 active:text-white transition-all">
+                                <i data-lucide="info" class="w-5 h-5"></i>
+                            </button>
+                        </td>
+                    </tr>
+                `;
+            });
+
+            html += `</tbody></table></div>`;
+            
+            container.innerHTML = html;
+            lucide.createIcons();
+        }
+
+        function showInfo(exerciseIndex) {
+            const exercise = routines[currentDay].exercises[exerciseIndex];
+            document.getElementById('modal-title').innerText = exercise.name;
+            document.getElementById('modal-content').innerHTML = exercise.detail;
+            document.getElementById('modal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+            lucide.createIcons();
+        }
+
+        function closeModal() {
+            document.getElementById('modal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        window.onload = () => {
+            const today = new Date().getDay();
+            selectDay(today);
+            lucide.createIcons();
+        };
+
+        document.getElementById('modal').addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
+    </script>
+</body>
+</html>
